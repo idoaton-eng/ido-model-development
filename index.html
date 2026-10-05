@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f1eb" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="IDO" />
+    <title>IDO — MODEL DEVELOPMENT V2</title>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-text">IDO / MODEL DEVELOPMENT</span>
+        </div>
+        <div class="version-badge">V2.0</div>
+      </header>
+
+      <main>
+        <section id="screen-today" class="screen active">
+          <div class="hero">
+            <div class="eyebrow">TODAY</div>
+            <h1 id="todayGreeting">LET'S BUILD.</h1>
+            <p>
+              יום קטן של עקביות. המטרה היא להיראות חד, חזק ומאוזן — בלי להפוך
+              את החיים לדיאטה.
+            </p>
+          </div>
+
+          <div class="panel">
+            <div class="label">DAILY PROGRESS</div>
+
+            <div class="progress-wrap">
+              <div class="progress-ring" id="progressRing">
+                <div class="progress-content">
+                  <span class="progress-number" id="progressNumber">0%</span>
+                  <span class="progress-text">הושלם היום</span>
+                </div>
+              </div>
+            </div>
+
+            <div id="todayTasks" class="task-list"></div>
+          </div>
+
+          <div class="section-header">
+            <h2>הנתונים שלי</h2>
+            <button class="btn btn-secondary" onclick="openEditModal()">
+              עריכה
+            </button>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="label">WEIGHT</div>
+              <div class="value" id="todayWeight">83.5</div>
+              <div class="unit">ק״ג</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="label">STEPS</div>
+              <div class="value" id="todaySteps">0</div>
+              <div class="unit">צעדים</div>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <h2>השבוע</h2>
+            <span>עקביות &gt; שלמות</span>
+          </div>
+
+          <div class="panel">
+            <div id="weekTracker" class="week-grid"></div>
+          </div>
+        </section>
+
+        <section id="screen-body" class="screen">
+          <div class="hero">
+            <div class="eyebrow">BODY</div>
+            <h1>BODY DATA</h1>
+            <p>מעקב פשוט אחר הנתונים החשובים לקראת הפולארוידים.</p>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="label">HEIGHT</div>
+              <div class="value" id="bodyHeight">187</div>
+              <div class="unit">cm</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="label">WEIGHT</div>
+              <div class="value" id="bodyWeight">83.5</div>
+              <div class="unit">kg</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="label">CHEST</div>
+              <div class="value" id="bodyChest">97</div>
+              <div class="unit">cm</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="label">WAIST</div>
+              <div class="value" id="bodyWaist">72</div>
+              <div class="unit">cm</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="label">HIPS</div>
+              <div class="value" id="bodyHips">96</div>
+              <div class="unit">cm</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="label">SHOULDERS</div>
+              <div class="value" id="bodyShoulders">120</div>
+              <div class="unit">cm</div>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <h2>הנתונים הנוכחיים</h2>
+            <button class="btn" onclick="openEditModal()">עדכון</button>
+          </div>
+
+          <div class="panel">
+            <div class="metric-row">
+              <span class="metric-name">גובה</span>
+              <span class="metric-value" id="metricHeight">187 cm</span>
+            </div>
+
+            <div class="metric-row">
+              <span class="metric-name">משקל</span>
+              <span class="metric-value" id="metricWeight">83.5 kg</span>
+            </div>
+
+            <div class="metric-row">
+              <span class="metric-name">חזה</span>
+              <span class="metric-value">97 cm</span>
+            </div>
+
+            <div class="metric-row">
+              <span class="metric-name">מותניים</span>
+              <span class="metric-value">72 cm</span>
+            </div>
+
+            <div class="metric-row">
+              <span class="metric-name">אגן</span>
+              <span class="metric-value">96 cm</span>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <h2>יעד</h2>
+          </div>
+
+          <div class="panel">
+            <div class="goal-row">
+              <span>Chest</span>
+              <strong>97 cm</strong>
+            </div>
+            <div class="goal-row">
+              <span>Waist</span>
+              <strong>72 cm</strong>
+            </div>
+            <div class="goal-row">
+              <span>Hips</span>
+              <strong>96 cm</strong>
+            </div>
+          </div>
+        </section>
+
+        <section id="screen-train" class="screen">
+          <div class="hero">
+            <div class="eyebrow">TRAIN</div>
+            <h1>TRAIN SMART.</h1>
+            <p>
+              3 אימוני כוח בשבוע. נפח נמוך–בינוני, דגש על פלג גוף עליון וליבה.
+            </p>
+          </div>
+
+          <div class="panel">
+            <div class="label">WEEKLY WORKOUTS</div>
+            <div class="value" id="workoutCounter">0 / 3</div>
+            <div class="bar">
+              <div class="bar-fill" id="workoutProgress"></div>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <h2>תוכנית השבוע</h2>
+          </div>
+
+          <div class="panel">
+            <div class="workout">
+              <div class="workout-top">
+                <div class="workout-name">01 / PUSH</div>
+                <div class="pill">RIR 2</div>
+              </div>
+              <div class="workout-desc">חזה · כתפיים · יד אחורית</div>
+            </div>
+
+            <div class="workout">
+              <div class="workout-top">
+                <div class="workout-name">02 / PULL</div>
+                <div class="pill">RIR 2</div>
+              </div>
+              <div class="workout-desc">גב · יד קדמית · יציבה</div>
+            </div>
+
+            <div class="workout">
+              <div class="workout-top">
+                <div class="workout-name">03 / SHOULDERS + CORE</div>
+                <div class="pill">RIR 2</div>
+              </div>
+              <div class="workout-desc">כתפיים · ליבה · שליטה</div>
+            </div>
+
+            <button
+              class="btn btn-block"
+              style="margin-top: 15px"
+              onclick="completeWorkout()"
+            >
+              סיימתי אימון ✓
+            </button>
+          </div>
+
+          <div class="section-header">
+            <h2>עקרונות</h2>
+          </div>
+
+          <div class="panel">
+            <div class="metric-row">
+              <span class="metric-name">תדירות</span>
+              <span class="metric-value">3× / שבוע</span>
+            </div>
+
+            <div class="metric-row">
+              <span class="metric-name">מאמץ</span>
+              <span class="metric-value">RIR 2</span>
+            </div>
+
+            <div class="metric-row">
+              <span class="metric-name">נפח</span>
+              <span class="metric-value">Low–Medium</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="screen-food" class="screen">
+          <div class="hero">
+            <div class="eyebrow">FOOD</div>
+            <h1>SMART MENU.</h1>
+            <p>
+              תפריט גמיש ולא אובססיבי. בוחרים את האפשרות שמתאימה ליום ולמקום
+              שבו אתה נמצא.
+            </p>
+          </div>
+
+          <div class="section-header">
+            <h2>התפריט שלי</h2>
+            <button class="btn btn-secondary" onclick="openMenuModal()">
+              + הוספה
+            </button>
+          </div>
+
+          <div class="panel">
+            <div class="meal-item">
+              <div class="meal-head">
+                <div class="meal-name">BREAKFAST</div>
+                <div class="meal-time">בוקר</div>
+              </div>
+              <div class="meal-description">
+                יוגורט + פרי (קיווי / ענבים / תפוח / בננה) + מקור חלבון.
+              </div>
+            </div>
+
+            <div class="meal-item">
+              <div class="meal-head">
+                <div class="meal-name">LUNCH</div>
+                <div class="meal-time">צהריים</div>
+              </div>
+              <div class="meal-description">
+                אורז / אטריות + טופו / ביצים + הרבה ירקות.
+              </div>
+            </div>
+
+            <div class="meal-item">
+              <div class="meal-head">
+                <div class="meal-name">SNACK</div>
+                <div class="meal-time">ביניים</div>
+              </div>
+              <div class="meal-description">פרי + יוגורט.</div>
+            </div>
+
+            <div class="meal-item">
+              <div class="meal-head">
+                <div class="meal-name">DINNER</div>
+                <div class="meal-time">ערב</div>
+              </div>
+              <div class="meal-description">
+                טופו / ביצים + ירקות + פחמימה לפי רעב.
+              </div>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <h2>מעקב היום</h2>
+          </div>
+
+          <div class="panel">
+            <div id="foodTracker"></div>
+          </div>
+
+          <div class="section-header">
+            <h2>שאל את המאבחן</h2>
+          </div>
+
+          <div class="panel">
+            <div class="field">
+              <label>שאלה</label>
+              <input
+                id="foodQuestionInput"
+                type="text"
+                placeholder="לדוגמה: האם אני יכול לאכול פיתה עם גבינה?"
+              />
+            </div>
+
+            <button class="btn btn-block" onclick="checkFoodQuestion()">
+              בדוק
+            </button>
+
+            <div class="food-answer-box" id="foodAnswerBox">
+              התשובה תופיע כאן
+            </div>
+          </div>
+        </section>
+
+        <section id="screen-profile" class="screen">
+          <div class="hero">
+            <div class="eyebrow">PROFILE</div>
+            <div class="profile-name" id="profileName">IDO.</div>
+            <div class="profile-meta">MODEL DEVELOPMENT / V2</div>
+          </div>
+
+          <div class="section-header">
+            <h2>הפרטים שלי</h2>
+          </div>
+
+          <div class="panel">
+            <div class="field">
+              <label>שם</label>
+              <input id="profileNameInput" type="text" value="Ido" />
+            </div>
+
+            <div class="field">
+              <label>גובה</label>
+              <input id="profileHeightInput" type="number" value="187" />
+            </div>
+
+            <div class="field">
+              <label>משקל</label>
+              <input id="profileWeightInput" type="number" step="0.1" value="83.5" />
+            </div>
+
+            <div class="field">
+              <label>יעד צעדים</label>
+              <input id="profileStepsInput" type="number" value="8000" />
+            </div>
+
+            <button class="btn btn-block" onclick="saveProfile()">
+              שמירת שינויים
+            </button>
+          </div>
+
+          <div class="section-header">
+            <h2>יעד המערכת</h2>
+          </div>
+
+          <div class="panel">
+            <div class="goal-row">
+              <span>Polaroids</span>
+              <strong>01.11</strong>
+            </div>
+            <div class="goal-row">
+              <span>Strength</span>
+              <strong>3× / week</strong>
+            </div>
+            <div class="goal-row">
+              <span>Daily steps</span>
+              <strong id="profileStepsGoal">8,000</strong>
+            </div>
+          </div>
+
+          <button class="btn btn-secondary btn-block" onclick="resetApp()">
+            איפוס נתוני מעקב
+          </button>
+        </section>
+      </main>
+    </div>
+
+    <nav class="bottom-nav" aria-label="ניווט עיקרי">
+      <button class="nav-button active" data-screen="today">
+        <span class="nav-icon">⌂</span>
+        <span>היום</span>
+      </button>
+
+      <button class="nav-button" data-screen="body">
+        <span class="nav-icon">◉</span>
+        <span>גוף</span>
+      </button>
+
+      <button class="nav-button" data-screen="train">
+        <span class="nav-icon">↗</span>
+        <span>אימון</span>
+      </button>
+
+      <button class="nav-button" data-screen="food">
+        <span class="nav-icon">＋</span>
+        <span>אוכל</span>
+      </button>
+
+      <button class="nav-button" data-screen="profile">
+        <span class="nav-icon">○</span>
+        <span>פרופיל</span>
+      </button>
+    </nav>
+
+    <div class="modal" id="editModal" aria-hidden="true">
+      <div class="sheet">
+        <div class="sheet-handle"></div>
+        <div class="sheet-header">
+          <h2>עריכת היום</h2>
+          <button class="close-btn" onclick="closeEditModal()">×</button>
+        </div>
+
+        <div class="field">
+          <label>משקל היום</label>
+          <input id="editWeight" type="number" step="0.1" />
+        </div>
+
+        <div class="field">
+          <label>צעדים היום</label>
+          <input id="editSteps" type="number" />
+        </div>
+
+        <button class="btn btn-block" onclick="saveTodayData()">שמירה</button>
+      </div>
+    </div>
+
+    <div class="modal" id="menuModal" aria-hidden="true">
+      <div class="sheet">
+        <div class="sheet-handle"></div>
+        <div class="sheet-header">
+          <h2>Smart Menu</h2>
+          <button class="close-btn" onclick="closeMenuModal()">×</button>
+        </div>
+
+        <div class="field">
+          <label>ארוחה</label>
+          <select id="newMealType">
+            <option value="breakfast">ארוחת בוקר</option>
+            <option value="lunch">ארוחת צהריים</option>
+            <option value="snack">נשנוש</option>
+            <option value="dinner">ארוחת ערב</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>מה אכלת?</label>
+          <input
+            id="newMealText"
+            type="text"
+            placeholder="לדוגמה: טופו + אורז + ירקות"
+          />
+        </div>
+
+        <button class="btn btn-block" onclick="addMeal()">הוסף לתפריט</button>
+      </div>
+    </div>
+
+    <div class="toast" id="toast">נשמר ✓</div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
